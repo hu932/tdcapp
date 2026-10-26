@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="C"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/on_surface"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="团队C"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/on_surface"
                 android:textSize="11sp"
                 android:textStyle="bold" />
 
@@ -83,7 +83,7 @@
             android:maxLines="4"
             android:minHeight="45dp"
             android:text="点击下方按钮开始"
-            android:textColor="#FFEB3B"
+            android:textColor="@color/tertiary"
             android:textSize="10sp" />
 
         <TextView
@@ -94,7 +94,7 @@
             android:background="@drawable/bg_float_action"
             android:gravity="center"
             android:text="一键做任务"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/on_surface"
             android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>

@@ -67,6 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="每次任务完成后，等待最小到最大秒数之间的随机延迟，再执行下一个任务。"
-        android:textColor="#999999"
+        android:textColor="@color/on_surface_variant"
         android:textSize="12sp" />
 </LinearLayout>

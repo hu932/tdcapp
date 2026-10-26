@@ -115,10 +115,24 @@ class TaskService : android.app.Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
             "PROCESS_FILE" -> {
-                val content = intent.getStringExtra("file_content").orEmpty()
+                var content = intent.getStringExtra("file_content").orEmpty()
+                if (content.isBlank()) {
+                    // 大内容由 DataReceiver 落盘后只传路径，这里读回来
+                    val p = intent.getStringExtra("file_content_path").orEmpty()
+                    if (p.isNotEmpty()) {
+                        content = try {
+                            java.io.File(p).readText().also { java.io.File(p).delete() }
+                        } catch (e: Exception) {
+                            Log.e(TAG, "读取回传文件失败: $p", e)
+                            ""
+                        }
+                    }
+                }
                 if (content.isNotBlank()) {
                     pendingFileContent = content
-                    Log.d(TAG, "PROCESS_FILE: ${content.length} bytes")
+                    Log.d(TAG, "PROCESS_FILE: ${content.length} chars")
+                } else {
+                    Log.w(TAG, "PROCESS_FILE: 内容为空，忽略")
                 }
             }
             "SET_DELAY" -> {
@@ -426,7 +440,15 @@ class TaskService : android.app.Service() {
                     return@launch
                 }
 
-                val content = pendingFileContent!!
+                // 这里原来是 pendingFileContent!!，回传超时后又恰好被清空时直接 NPE 崩进程。
+                val content = pendingFileContent
+                if (content.isNullOrBlank()) {
+                    Log.w(TAG, "回传内容为空，跳过本轮")
+                    updateFloatStatus("未拿到数据，跳过本轮")
+                    isUploading = false
+                    if (isAutoRunning) startNextTaskCycle()
+                    return@launch
+                }
                 pendingFileContent = null
                 isUploading = true
                 updateFloatStatus("正在上传数据...")

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="团队C"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/on_surface"
         android:textSize="40sp"
         android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:text="高效 · 稳定 · 智能分发"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/on_surface"
         android:textSize="12sp"
         android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="32dp"
         android:text="团队C 任务自动化平台"
-        android:textColor="#B9C8FF"
+        android:textColor="@color/on_surface_variant"
         android:textSize="13sp" />
 
     <LinearLayout
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="手机号登录"
-            android:textColor="#1A2A6B"
+            android:textColor="@color/on_surface"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -80,7 +80,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="极速领取 · 数据安全回传"
-            android:textColor="#999999"
+            android:textColor="@color/on_surface_variant"
             android:textSize="12sp" />
     </LinearLayout>
 
